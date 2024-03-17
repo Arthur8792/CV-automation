@@ -2,7 +2,11 @@ from langchain_openai import ChatOpenAI
 from PyPDF2 import PdfReader 
 
 OPENAI_MODEL = 'gpt-3.5-turbo'
-OPENAI_API_KEY = 'Enter API key'
+OPENAI_API_KEY = ''
+
+# Get OpenAI API key : 
+with open('api_key.txt','r') as api_key_file:
+    OPENAI_API_KEY = api_key_file.readline().strip('\n')
 
 def pdf_to_txt(pdf_file: str)->None:
     """
