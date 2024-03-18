@@ -1,0 +1,24 @@
+{
+    "prompts":[
+        {
+            "input_variables":["CV"],
+            "output_key":"prenom",
+            "content":"Donne-moi le prénom pour le CV suivant : {CV}"
+        },
+        {
+            "input_variables":["CV"],
+            "output_key":"poste",
+            "content":"Donne-moi le poste occupé pour le CV : {CV}"   
+        },
+        {
+            "input_variables":["CV"],
+            "output_key":"annees-experience",
+            "content":"Donne-moi le nombre d'années d'expérience pour le CV : {CV}"
+        },
+        {
+            "input_variables":["CV"],
+            "output_key":"principaux-projets",
+            "content":"Liste-moi les principaux projets pour le CV : {CV}"
+        }
+    ]
+}

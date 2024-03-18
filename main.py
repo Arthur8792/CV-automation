@@ -1,6 +1,6 @@
+import json
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain, SequentialChain
-from langchain.memory import ConversationBufferMemory
 from langchain_openai import ChatOpenAI
 from PyPDF2 import PdfReader 
 
@@ -41,27 +41,36 @@ def main():
 
     # Create LLM model
     llm = ChatOpenAI(model=OPENAI_MODEL, api_key=OPENAI_API_KEY)
+    
+    dico_prompts = {}
 
-    # Create prompts
-    prompt1 = PromptTemplate(
-        input_variables=['CV'],
-        template = "Donne-moi la formation la plus récente du CV suivant : {CV}"
-    )
+    # Get prompts from JSON : 
+    with open("prompts.json",'r') as json_file:
+        dico_prompts = json.load(json_file)
+    
+    chains = []
+    output_variables = []
 
-    prompt2 = PromptTemplate(
-        input_variables=['CV'],
-        template = "Liste-moi ses compétences techniques, en détaillant les langages, les outils collaboratifs, et les outils métiers du CV suivant : {CV}"
-    )
+    for prompt in dico_prompts["prompts"]:
+        input_variables = prompt["input_variables"]
+        template = prompt["content"]
+        output_key = prompt["output_key"]
 
-    # Create chains : 
-    chain1 = LLMChain(llm = llm, prompt=prompt1, output_key="derniere-formation")
-    chain2 = LLMChain(llm = llm, prompt=prompt2, output_key="competences-techniques")
+        prompt_template = PromptTemplate(
+            input_variables=input_variables,
+            template=template
+        )
+
+        chain = LLMChain(llm = llm, prompt=prompt_template, output_key = output_key)
+
+        chains.append(chain)
+        output_variables.append(output_key)
 
     # Create sequence of these chains :
     sequential_chain = SequentialChain(
-        chains = [chain1, chain2],
+        chains = chains,
         input_variables = ["CV"],
-        output_variables = ["derniere-formation","competences-techniques"]
+        output_variables = output_variables
     )
 
     result = sequential_chain.invoke({"CV":cv_content})
@@ -71,10 +80,15 @@ def main():
     # Close CV file : 
     cv_file.close()
 
-    # Write result in TXT file : 
-    with open("result.txt",'w', encoding='utf-8') as result_file:
-        result_file.write("Dernière formation : " + result["derniere-formation"] + "\n")
-        result_file.write("Compétences techniques : " + result["competences-techniques"] + "\n")
+    # Store results in a dictionary : 
+    dico_result = {}
+    for output in output_variables:
+        if output not in dico_result:
+            dico_result[output] = result[output]
+    
+    # Save results in a JSON file
+    with open("result.json",'w', encoding='utf-8') as result_file:
+        json.dump(dico_result, result_file, ensure_ascii=False)
 
 if __name__ == '__main__':
     main()
