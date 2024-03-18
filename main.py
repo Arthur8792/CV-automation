@@ -1,8 +1,8 @@
-import json
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain, SequentialChain
 from langchain_openai import ChatOpenAI
-from PyPDF2 import PdfReader 
+
+from src.utils.utils import pdf_to_txt, json_to_dico, dico_to_json 
 
 OPENAI_MODEL = 'gpt-3.5-turbo'
 OPENAI_API_KEY = ''
@@ -11,42 +11,23 @@ OPENAI_API_KEY = ''
 with open('api_key.txt','r') as api_key_file:
     OPENAI_API_KEY = api_key_file.readline().strip('\n')
 
-def pdf_to_txt(pdf_file: str)->None:
-    """
-    Converts a pdf file to a txt file.
-
-    Args:
-        pdf_file : path of the PDF file.
-    """
-    reader = PdfReader(pdf_file)
-    with open("cv_content.txt","w",encoding='utf-8') as file:
-        for page_num in range(len(reader.pages)):
-            page = reader.pages[page_num]
-            extracted_text = page.extract_text()
-            file.write(extracted_text)
 
 def main():
 
-    # Entry PDF file
-    pdf_file = 'original-cv/Exemple1.pdf'
+    # FIles paths
+    pdf_file = 'data/cv/Exemple1.pdf'
+    prompts_file = 'data/prompts/prompts.json'
+    result_file = 'data/results/results.json'
 
     # Convert from PDF to txt
-    pdf_to_txt(pdf_file)
-
-    # Extract text contents of the CV
-    cv_file = open("cv_content.txt","r")
-    cv_content = cv_file.read()
+    cv_content = pdf_to_txt(pdf_file)
 
     ## LLM PART
 
     # Create LLM model
     llm = ChatOpenAI(model=OPENAI_MODEL, api_key=OPENAI_API_KEY)
     
-    dico_prompts = {}
-
-    # Get prompts from JSON : 
-    with open("prompts.json",'r') as json_file:
-        dico_prompts = json.load(json_file)
+    dico_prompts = json_to_dico(prompts_file)
     
     chains = []
     output_variables = []
@@ -77,18 +58,13 @@ def main():
 
     ## END LLM PART
 
-    # Close CV file : 
-    cv_file.close()
-
     # Store results in a dictionary : 
     dico_result = {}
     for output in output_variables:
         if output not in dico_result:
             dico_result[output] = result[output]
     
-    # Save results in a JSON file
-    with open("result.json",'w', encoding='utf-8') as result_file:
-        json.dump(dico_result, result_file, ensure_ascii=False)
+    dico_to_json(dico_result, result_file)
 
 if __name__ == '__main__':
     main()
