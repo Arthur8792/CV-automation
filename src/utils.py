@@ -23,7 +23,7 @@ def pdf_to_txt(pdf_file: str)->str:
         content +=extracted_text
     return content
 
-def json_to_dico(json_file: str)->dict[str,str|list]:
+def json_to_dico(json_file: str)->dict[str,str|list[str]]:
     """
     Reads json file in parameter and store in contents in a dictionary.
 
@@ -37,7 +37,7 @@ def json_to_dico(json_file: str)->dict[str,str|list]:
         dico = json.load(file)
     return dico
 
-def dico_to_json(dico: dict[str,str|list], json_file: str)->None:
+def dico_to_json(dico: dict[str,str|list[str]], json_file: str)->None:
     """
     Writes the contents of the dictionary in parameter in a json file.
 
