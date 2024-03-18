@@ -16,7 +16,9 @@ def main():
     # Files paths
     pdf_file = 'data/cv/Exemple1.pdf'
     prompts_file = 'data/prompts/prompts.json'
+    prompts_experience_file = 'data/prompts/prompts-experiences.json'
     result_file = 'data/results/results.json'
+    result_file_experience = 'data/results/results-experiences.json'
 
     # Convert from PDF to txt
     cv_content = pdf_to_txt(pdf_file)
@@ -26,21 +28,40 @@ def main():
     
     # Extract prompts from JSON file.
     dico_prompts = json_to_dico(prompts_file)
+    dico_prompts_experiences = json_to_dico(prompts_experience_file)
     
     # Create the sequential chain : 
     sequential_chain, output_variables = create_sequential_chain(llm, dico_prompts)
+    sequential_chain_experiences, output_variables_experiences = create_sequential_chain(llm, dico_prompts_experiences)
 
-    # Run the pipeline
+    # Run the general pipeline
     result = sequential_chain.invoke({"CV":cv_content})
 
     # Store results in a dictionary : 
     dico_result = {}
     for output in output_variables:
-        if output not in dico_result:
+        if output != "noms-clients":
             dico_result[output] = result[output]
+
+    # Part experiences : 
+    clients = result["noms-clients"]
+    liste_clients = clients.strip("][").split(', ')
+
+    # For each client,  : 
+    dico_result_experiences = {}
+    for client_name in liste_clients:
+        if client_name not in dico_result_experiences:
+            dico_result_experiences[client_name] = {}
+        result_experience = sequential_chain_experiences.invoke({"CV":cv_content,"client_name":client_name})
+        # Store result in dictionary
+        # Store client name
+        dico_result_experiences[client_name]["client_name"] = client_name
+        for output in output_variables_experiences:
+            dico_result_experiences[client_name][output] = result_experience[output]
     
     # Store the result in a JSON file
     dico_to_json(dico_result, result_file)
+    dico_to_json(dico_result_experiences, result_file_experience)
 
 if __name__ == '__main__':
     main()

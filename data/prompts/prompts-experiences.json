@@ -1,0 +1,15 @@
+{
+    "prompts":[
+        {
+            "input_variables":["CV","client_name"],
+            "output_key":"date",
+            "content":"CONTEXTE : Tu es un professionnel des ressources humaines. Tu connais parfaitement la structure des CV. \n TÂCHE : Donne-moi quand a travaillé la personne du CV {CV} chez le client {client_name}. \n IMPORTANT : Retourne-moi uniquement la date de début et de fin."
+        },
+        {
+            "input_variables":["CV","client_name"],
+            "output_key":"poste",
+            "content":"CONTEXTE : Tu es un professionnel des ressources humaines. Tu connais parfaitement la structure des CV. \n TÂCHE : Donne-moi quel était le poste de la personne du CV {CV} chez le client {client_name}. \n IMPORTANT : Retourne-moi uniquement le poste occupé."
+        }
+
+    ]
+}

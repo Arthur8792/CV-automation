@@ -1,7 +1,6 @@
 """
 Functions associated to langchain sequential chain.
 """
-
 from langchain_openai import ChatOpenAI
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain, SequentialChain
@@ -38,7 +37,7 @@ def create_sequential_chain(llm: ChatOpenAI, dico_prompts: dict[str, str|list[st
     # Create sequence of these chains :
     sequential_chain = SequentialChain(
         chains = chains,
-        input_variables = ["CV"],
+        input_variables = input_variables,
         output_variables = output_variables
     )
 
