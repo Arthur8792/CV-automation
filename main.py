@@ -1,5 +1,6 @@
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain, SequentialChain
+from langchain.memory import ConversationBufferMemory
 from langchain_openai import ChatOpenAI
 from PyPDF2 import PdfReader 
 
@@ -39,32 +40,41 @@ def main():
     ## LLM PART
 
     # Create LLM model
+    memory = ConversationBufferMemory(memory_key="chat_history", input_key="human_input")
     llm = ChatOpenAI(model=OPENAI_MODEL, api_key=OPENAI_API_KEY)
+
+    # Create initial prompt
+    initial_prompt = PromptTemplate(
+        input_variables = ['CV', 'chat_history', 'human_input'],
+        template = "Lis attentivement le CV suivant : {CV}. Je vais ensuite te poser des questions dessus."
+    )
 
     # Create prompts
     prompt1 = PromptTemplate(
-        input_variables=['CV'],
-        template = "Donne-moi la formation la plus récente du CV suivant : {CV}"
+        input_variables = ['chat_history', 'human_input'],
+        template = "{chat_history} \n Donne-moi la formation la plus récente de ce CV \n {human_input}"
     )
 
     prompt2 = PromptTemplate(
-        input_variables=['CV'],
-        template = "Liste-moi ses compétences techniques, en détaillant les langages, les outils collaboratifs, et les outils métiers du CV suivant : {CV}"
+        input_variables=['chat_history', 'human_input'],
+        template = "{chat_history} \n Liste-moi les compétences techniques, en détaillant les langages, les outils collaboratifs, et les outils métiers \n {human_input}"
     )
 
     # Create chains : 
-    chain1 = LLMChain(llm = llm, prompt=prompt1, output_key="derniere-formation")
-    chain2 = LLMChain(llm = llm, prompt=prompt2, output_key="competences-techniques")
+    initial_chain = LLMChain(llm = llm, prompt = initial_prompt, memory = memory)
+    chain1 = LLMChain(llm = llm, prompt=prompt1, output_key="derniere-formation", memory = memory)
+    chain2 = LLMChain(llm = llm, prompt=prompt2, output_key="competences-techniques", memory = memory)
 
     # Create sequence of these chains :
     sequential_chain = SequentialChain(
-        chains = [chain1, chain2],
-        input_variables = ["CV","CV"],
+        chains = [initial_chain, chain1, chain2],
+        input_variables = ["CV","human_input"],
         output_variables = ["derniere-formation","competences-techniques"]
     )
 
-    result = sequential_chain.invoke({"CV":cv_content, "CV":cv_content})
+    result = sequential_chain.invoke({"CV":cv_content, "human_input":""})
 
+    print(result)
     ## END LLM PART
 
     # Close CV file : 
