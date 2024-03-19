@@ -34,7 +34,7 @@ def json_to_dico(json_file: str)->dict[str,str|list[str]]:
         the dictionary which contains the elements from the json file.
     """
     dico = {} 
-    with open(json_file,'r') as file:
+    with open(json_file,'r', encoding='utf-8') as file:
         dico = json.load(file)
     return dico
 

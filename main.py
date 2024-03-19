@@ -3,6 +3,7 @@ from src.utils import pdf_to_txt, json_to_dico, dico_to_json, fill_docx_template
 from src.sequential_chains import create_sequential_chain
 
 OPENAI_MODEL = 'gpt-3.5-turbo'
+OPENAI_API_KEY_FILE = 'api_key.txt'
 OPENAI_API_KEY = ''
 
 def main():
@@ -10,7 +11,7 @@ def main():
     Main entry of the pipeline.
     """
     # Get OpenAI API key : 
-    with open('api_key.txt','r') as api_key_file:
+    with open(OPENAI_API_KEY_FILE,'r') as api_key_file:
         OPENAI_API_KEY = api_key_file.readline().strip('\n')
     
     # Files paths
@@ -33,27 +34,32 @@ def main():
     dico_prompts_experiences = json_to_dico(prompts_experience_file)
     
     # Create the sequential chain : 
-    # sequential_chain, output_variables = create_sequential_chain(llm, dico_prompts)
+    sequential_chain, output_variables = create_sequential_chain(llm, dico_prompts)
     sequential_chain_experiences, output_variables_experiences = create_sequential_chain(llm, dico_prompts_experiences)
-    print(output_variables_experiences)
 
     # Run the general pipeline
-    # result = sequential_chain.invoke({"CV":cv_content})
+    print("Getting general information about CV...")
+    result = sequential_chain.invoke({"CV":cv_content})
+    print("Get general information !")
 
     # Store results in a dictionary : 
-    # dico_result = {}
-    # for output in output_variables:
-    #     if output != "noms-clients":
-    #         dico_result[output] = result[output]
+    dico_result = {}
+    for output in output_variables:
+        if output != "noms_clients":
+            dico_result[output] = result[output]
 
     # Part experiences : 
-    # clients = result["noms-clients"]
-    # liste_clients = clients.strip("][").split(', ')
-    liste_clients = ['KPMG','Blablacar','AFD']
+    clients = result["noms_clients"]
+    liste_clients = clients.strip("][").split(', ')
 
     # For each client,  : 
+    print("Getting information for each professional experience...")
     dico_result_experiences = {"experiences":[]}
+    counter_monitoring = 0
     for client_name in liste_clients:
+        counter_monitoring += 1
+        if counter_monitoring>3:
+            break
         result_experience = sequential_chain_experiences.invoke({"CV":cv_content,"client_name":client_name})
         # Store result in dictionary
         # Store client name
@@ -62,15 +68,15 @@ def main():
         for output in output_variables_experiences:
             dico_client[output] = result_experience[output]
         dico_result_experiences['experiences'].append(dico_client)
-    
+    print("Get information about each experience ! ")
     # Store the result in a JSON file
-    # dico_to_json(dico_result, result_file)
+    dico_to_json(dico_result, result_file)
     dico_to_json(dico_result_experiences, result_file_experience)
 
     # Fill the Word template
     dico_fill, dico_fill_experience = json_to_dico(result_file), json_to_dico(result_file_experience)
     # Gather in 1 dictionary
-    dico_fill["experiences"] = dico_fill_experience["experience"]
+    dico_fill["experiences"] = dico_fill_experience["experiences"]
     fill_docx_template(dico_fill, template_file, cv_word)
 
 if __name__ == '__main__':
