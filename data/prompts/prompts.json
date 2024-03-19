@@ -12,22 +12,22 @@
         },
         {
             "input_variables":["CV"],
-            "output_key":"annees-experience",
+            "output_key":"annees_experience",
             "content":"CONTEXTE : Tu es un professionnel des ressources humaines. Tu connais parfaitement la structure des CV. \n TÂCHE : Donne-moi le nombre d'années d'expérience pour le CV suivant : {CV}. \n IMPORTANT : Donne ta réponse sous la forme : xx ans d'expérience, ou xx est le nombre d'années d'expérience"
         },
         {
             "input_variables":["CV"],
-            "output_key":"principaux-projets",
+            "output_key":"principaux_projets",
             "content":"CONTEXTE : Tu es un professionnel des ressources humaines. Tu connais parfaitement la structure des CV. \n TÂCHE : Liste-moi les noms des 3 principaux clients pour lesquels la personne du CV a travaillé, pour le CV suivant : {CV} \n IMPORTANT : Ecris ta réponse sous forme de liste, où chaque élément de la liste contient uniquement le nom du client."
         },
         {
             "input_variables":["CV"],
-            "output_key":"competences-techniques",
+            "output_key":"competences_techniques",
             "content":"CONTEXTE : Tu es un professionnel des ressources humaines. Tu connais parfaitement la structure des CV. \n TÂCHE : Liste-moi les compétences techniques pour le CV suivant : {CV} \n IMPORTANT : Ecris ta réponse sous forme de liste, en séparant les langages, les outils métiers, et les outils collaboratifs."
         },
         {
             "input_variables":["CV"],
-            "output_key":"competences-fonctionnelles",
+            "output_key":"competences_fonctionnelles",
             "content":"CONTEXTE : Tu es un professionnel des ressources humaines. Tu connais parfaitement la structure des CV. \n TÂCHE : Liste-moi les compétences fonctionnelles pour le CV suivant : {CV} \n. IMPORTANT : Ecris ta réponse sous forme de liste."
         },
         {
@@ -37,7 +37,7 @@
         },
         {
             "input_variables":["CV"],
-            "output_key":"noms-clients",
+            "output_key":"noms_clients",
             "content":"CONTEXTE : Tu es un professionnel des ressources humaines. Tu connais parfaitement la structure des CV. \n TÂCHE : Liste-moi le nom de tous les clients lesquels la personne du CV a travaillé, pour le CV suivant : {CV} \n. IMPORTANT : Ecris ta réponse sous la forme suivante : [client1, client2, client3,...]"
         }
         

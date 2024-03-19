@@ -3,6 +3,7 @@ Implementation of some useful functions for the pipeline.
 """
 import json
 from PyPDF2 import PdfReader 
+from docxtpl import DocxTemplate
 
 def pdf_to_txt(pdf_file: str)->str:
     """
@@ -48,4 +49,19 @@ def dico_to_json(dico: dict[str,str|list[str]], json_file: str)->None:
         None
     """
     with open(json_file,'w', encoding='utf-8') as file:
-        json.dump(dico, file, ensure_ascii=False)
+        json.dump(dico, file, ensure_ascii=True)
+
+def fill_docx_template(dico: dict[str,str], template_file: str, docx_file: str)->None:
+    """
+    Fills the docx file template with the elements in the dictionary.
+
+    Args:
+        dico : the dictionary which contains elements to fill the template.
+        template_file : path of the docx template.
+        docx_file : path of the file which will be generated with filled template.
+    Returns:
+        None
+    """
+    template = DocxTemplate(template_file)
+    template.render(dico)
+    template.save(docx_file)

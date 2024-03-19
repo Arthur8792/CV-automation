@@ -2,3 +2,5 @@ PyPDF2
 openai
 langchain
 langchain-openai
+docxtpl
+jinja2
