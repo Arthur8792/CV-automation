@@ -3,42 +3,42 @@
         {
             "input_variables":["CV"],
             "output_key":"prenom",
-            "content":"CONTEXTE : Tu es un professionnel des ressources humaines. Tu connais parfaitement la structure des CV. \n TÂCHE : Donne-moi le prénom pour le CV suivant : {CV}. \n IMPORTANT : Retourne-moi seulement son prénom, sans introduction ou marque de fin."
+            "content":"Donne-moi le prénom pour le CV suivant : {CV}. Retourne-moi seulement son prénom, sans introduction ou marque de fin."
         },
         {
             "input_variables":["CV"],
             "output_key":"poste",
-            "content":"CONTEXTE : Tu es un professionnel des ressources humaines. Tu connais parfaitement la structure des CV. \n TÂCHE : Donne-moi la fonction actuelle pour le CV suivant : {CV}. \n IMPORTANT : Retourne-moi seulement sa fonction, sans introduction ou marque de fin."   
+            "content":"Donne-moi la fonction actuelle pour le CV suivant : {CV}. Retourne-moi seulement sa fonction, sans introduction ou marque de fin."   
         },
         {
             "input_variables":["CV"],
             "output_key":"annees_experience",
-            "content":"CONTEXTE : Tu es un professionnel des ressources humaines. Tu connais parfaitement la structure des CV. \n TÂCHE : Donne-moi le nombre d'années d'expérience pour le CV suivant : {CV}. \n IMPORTANT : Donne ta réponse sous la forme : xx ans d'expérience, ou xx est le nombre d'années d'expérience"
+            "content":"Donne-moi le nombre d'années d'expérience pour le CV suivant : {CV}. Donne ta réponse sous la forme : xx ans d'expérience, ou xx est le nombre d'années d'expérience"
         },
         {
             "input_variables":["CV"],
             "output_key":"principaux_projets",
-            "content":"CONTEXTE : Tu es un professionnel des ressources humaines. Tu connais parfaitement la structure des CV. \n TÂCHE : Liste-moi les noms des 3 principaux clients pour lesquels la personne du CV a travaillé, pour le CV suivant : {CV} \n IMPORTANT : Ecris ta réponse sous forme de liste, où chaque élément de la liste contient uniquement le nom du client."
+            "content":"Liste-moi les noms des 3 principaux clients pour lesquels la personne du CV a travaillé, pour le CV suivant : {CV}. Ecris ta réponse sous forme de liste, où chaque élément de la liste contient uniquement le nom du client."
         },
         {
             "input_variables":["CV"],
             "output_key":"competences_techniques",
-            "content":"CONTEXTE : Tu es un professionnel des ressources humaines. Tu connais parfaitement la structure des CV. \n TÂCHE : Liste-moi les compétences techniques pour le CV suivant : {CV} \n IMPORTANT : Ecris ta réponse sous forme de liste, en séparant les langages, les outils métiers, et les outils collaboratifs."
+            "content":"Donne moi les compétences techniques pour ce CV. Regroupe les compétences par catégories : outils bureautiques, outils collaboratifs, outils métiers, langages. Sépare chaque outil par une virgule."
         },
         {
             "input_variables":["CV"],
             "output_key":"competences_fonctionnelles",
-            "content":"CONTEXTE : Tu es un professionnel des ressources humaines. Tu connais parfaitement la structure des CV. \n TÂCHE : Liste-moi les compétences fonctionnelles pour le CV suivant : {CV} \n. IMPORTANT : Ecris ta réponse sous forme de liste."
+            "content":"Liste moi les compétences fonctionnelles pour ce CV. Ecris ta réponse sous forme de liste."
         },
         {
             "input_variables":["CV"],
             "output_key":"formation",
-            "content":"CONTEXTE : Tu es un professionnel des ressources humaines. Tu connais parfaitement la structure des CV. \n TÂCHE : Liste-moi les différentes formations et certifications pour le CV suivant : {CV} \n. IMPORTANT : Ecris ta réponse sous forme de liste, en démarrant par la formation la plus récente. Pour chaque élément de la liste, indique les dates de la formation, puis donne le nom de la formation, le nom de l'établissement, et la ville, séparés par | ."
+            "content":"Liste moi ses formations de la plus récente à la plus ancienne, sous forme de bullet point."
         },
         {
             "input_variables":["CV"],
             "output_key":"noms_clients",
-            "content":"CONTEXTE : Tu es un professionnel des ressources humaines. Tu connais parfaitement la structure des CV. \n TÂCHE : Liste-moi le nom de tous les clients lesquels la personne du CV a travaillé, pour le CV suivant : {CV} \n. IMPORTANT : Ecris ta réponse sous la forme suivante : [client1, client2, client3,...]"
+            "content":"Donne-moi le nom de tous les clients lesquels la personne du CV a travaillé, pour le CV suivant : {CV}. Ecris ta réponse sous la forme suivante : [client1, client2, client3,...]"
         }
         
     ]
