@@ -3,42 +3,42 @@
         {
             "input_variables":["CV"],
             "output_key":"prenom",
-            "content":"Donne-moi le prénom pour le CV suivant : {CV}. Retourne-moi seulement son prénom, sans introduction ou marque de fin."
+            "content":"Tu es un professionnel des ressources humaines. Tu connais très bien la structure et le contenu des CV. \n Donne-moi le prénom pour le CV suivant : {CV}. \n Retourne-moi seulement son prénom, sans introduction ou marque de fin."
         },
         {
             "input_variables":["CV"],
             "output_key":"poste",
-            "content":"Donne-moi le poste qu'il occupe actuellement pour le CV suivant : {CV}. Retourne-moi uniquement le poste, sans introduction ou marque de fin."   
+            "content":"Tu es un professionnel des ressources humaines. Tu connais très bien la structure et le contenu des CV. \n Donne-moi le métier de la personne pour le CV suivant : {CV}. \n Retourne-moi uniquement le métier, sans introduction ou marque de fin."   
         },
         {
             "input_variables":["CV"],
             "output_key":"annees_experience",
-            "content":"Donne-moi le nombre d’années d’expérience pour le CV suivant : {CV}. Écris ta réponse sous la forme 'xx ans d’expérience', où xx est le nombre d’années d’expérience"
+            "content":"Tu es un professionnel des ressources humaines. Tu connais très bien la structure et le contenu des CV. \n Donne-moi le nombre d'années d'expérience pour le CV suivant : {CV}. \n Ecris ta réponse sous la forme 'xx ans d'expérience', où xx est le nombre d'années d'expérience."
         },
         {
             "input_variables":["CV"],
             "output_key":"principaux_projets",
-            "content":"Liste-moi les noms des 3 principaux clients pour lesquels il a travaillé, pour le CV suivant : {CV}. Ecris ta réponse sous forme de bullet point, où chaque point contient uniquement le nom du client."
+            "content":"Tu es un professionnel des ressources humaines. Tu connais très bien la structure et le contenu des CV. \n Liste-moi les noms des 3 principaux clients pour lesquels il a travaillé, pour le CV suivant : {CV}. \n Ecris ta réponse sous forme de bullet point, où chaque point contient uniquement le nom du client."
         },
         {
             "input_variables":["CV"],
             "output_key":"competences_techniques",
-            "content":"Donne-moi les compétences techniques pour le CV suivant : {CV}. Regroupe les compétences par catégories : outils bureautiques, outils collaboratifs, outils métiers, langages. Sépare chaque outil par une virgule."
+            "content":"Tu es un professionnel des ressources humaines. Tu connais très bien la structure et le contenu des CV.\n Donne-moi les compétences techniques pour le CV suivant : {CV}.\n Regroupe les compétences par catégories : outils bureautiques, outils collaboratifs, outils métiers, langages.\n Ecris ta réponse sous la forme suivante : \n‘\n - Outils bureautiques : outil1, outil2, ...\n - Outils collaboratifs : outil1, outil2, ... \n - Outils métiers : outil1, outil2, ... \n - Langages : langage1, langage2, ... \n ' "
         },
         {
             "input_variables":["CV"],
             "output_key":"competences_fonctionnelles",
-            "content":"Liste-moi les compétences fonctionnelles pour le CV suivant : {CV}. Ecris ta réponse sous forme de bullet point."
+            "content":"Tu es un professionnel des ressources humaines. Tu connais très bien la structure et le contenu des CV. \n Donne-moi les compétences fonctionnelles pour le CV suivant : {CV}. \n Ne te base PAS sur ses expériences professionnelles. N'inclus AUCUNE compétence technique. Limite toi à 5 compétences. \n Ecris ta réponse sous la forme suivante : \n ' \n - Compétence 1 \n - Compétence 2 \n - Compétence 3 \n - Compétence 4 \n - Compétence 5 \n ' "
         },
         {
             "input_variables":["CV"],
             "output_key":"formation",
-            "content":"Liste-moi les formations et certifications pour ce CV, de la plus récente à la plus ancienne. Ecris ta réponse sous forme de bullet point, où chaque point contient d'abord l'année, puis le nom de l'établissement, puis le nom de la formation ou certification, et enfin le lieu de la formation ou certification."
+            "content":"Tu es un professionnel des ressources humaines. Tu connais très bien la structure et le contenu des CV. \n Liste-moi les formations et certifications pour le CV suivant : {CV}, de la plus récente à la plus ancienne. \n Ecris ta réponse sous forme de bullet point, où chaque point est écrit de la façon suivante : 'année de la formation ou certification : nom de la formation ou certification | établissement de la formation ou certification | lieu de la formation ou certification'"
         },
         {
             "input_variables":["CV"],
             "output_key":"noms_clients",
-            "content":"Donne-moi le nom de tous les clients pour lesquels il a travaillé. Ecris ta réponse sous la forme suivante : [client1, client2, client3, ...]"
+            "content":"Tu es un professionnel des ressources humaines. Tu connais très bien la structure et le contenu des CV. \n Donne-moi le nom de tous les clients pour lesquels il a travaillé, pour le CV suivant : {CV}, du plus récent au plus ancien. \n Ne me retourne PAS l'employeur. Retourne-moi le CLIENT. \n Ecris ta réponse sous la forme suivante : [client1, client2, client3, ...]"
         }
         
     ]
