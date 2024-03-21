@@ -2,8 +2,8 @@ from langchain_openai import ChatOpenAI
 from src.utils import pdf_to_txt, json_to_dico, dico_to_json, fill_docx_template
 from src.sequential_chains import create_sequential_chain
 
-OPENAI_MODEL = 'gpt-3.5-turbo'
-OPENAI_API_KEY_FILE = 'api_key.txt'
+OPENAI_MODEL = 'gpt-4'
+OPENAI_API_KEY_FILE = 'api_key_4.txt'
 OPENAI_API_KEY = ''
 
 def main():
@@ -46,6 +46,7 @@ def main():
     dico_result = {}
     for output in output_variables:
         if output != "noms_clients":
+            result[output].replace("&", "&amp;")
             dico_result[output] = result[output]
 
     # Part experiences : 
@@ -55,17 +56,18 @@ def main():
     # For each client,  : 
     print("Getting information for each professional experience...")
     dico_result_experiences = {"experiences":[]}
-    counter_monitoring = 0
+    # counter_monitoring = 0
     for client_name in liste_clients:
-        counter_monitoring += 1
-        if counter_monitoring>3:
-            break
+        # counter_monitoring += 1
+        # if counter_monitoring>3:
+        #     break
         result_experience = sequential_chain_experiences.invoke({"CV":cv_content,"client_name":client_name})
         # Store result in dictionary
         # Store client name
         dico_client = {}
         dico_client["client_name"] = client_name
         for output in output_variables_experiences:
+            result_experience[output].replace("&", "&amp;")
             dico_client[output] = result_experience[output]
         dico_result_experiences['experiences'].append(dico_client)
     print("Get information about each experience ! ")
@@ -73,7 +75,7 @@ def main():
     dico_to_json(dico_result, result_file)
     dico_to_json(dico_result_experiences, result_file_experience)
 
-    # Fill the Word template
+    # # Fill the Word template
     dico_fill, dico_fill_experience = json_to_dico(result_file), json_to_dico(result_file_experience)
     # Gather in 1 dictionary
     dico_fill["experiences"] = dico_fill_experience["experiences"]

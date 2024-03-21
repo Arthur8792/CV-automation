@@ -33,7 +33,7 @@
         {
             "input_variables":["CV"],
             "output_key":"formation",
-            "content":"Tu es un professionnel des ressources humaines. Tu connais très bien la structure et le contenu des CV. \n Liste-moi les formations et certifications pour le CV suivant : {CV}, de la plus récente à la plus ancienne. \n Ecris ta réponse sous forme de bullet point, où chaque point est écrit de la façon suivante : 'année de la formation ou certification : nom de la formation ou certification | établissement de la formation ou certification | lieu de la formation ou certification'"
+            "content":"Tu es un professionnel des ressources humaines. Tu connais très bien la structure et le contenu des CV. \n Liste-moi les formations et certifications pour le CV suivant : {CV}, de la plus récente à la plus ancienne. \n Ecris ta réponse sous forme de bullet point, où chaque point est écrit de la façon suivante : 'année de la formation ou certification : nom de la formation ou certification | établissement de la formation ou certification | lieu de la formation ou certification'. \n Dans le cas d'une certification, n'indique pas de lieu."
         },
         {
             "input_variables":["CV"],
