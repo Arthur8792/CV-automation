@@ -3,27 +3,27 @@
         {
             "input_variables":["CV","client_name"],
             "output_key":"date",
-            "content":"Donne-moi quand a travaillé la personne du CV chez le client {client_name}, pour le CV suivant : {CV}. Retourne-moi uniquement la date de début et de fin."
+            "content":"Tu es un professionnel des ressources humaines. Tu connais très bien la structure et le contenu des CV. \n Donne-moi la durée de son expérience chez {client_name}, pour le CV suivant : {CV}. \n Retourne-moi uniquement la durée de l'expérience chez le client, sans rien d'autre. S'il n'y a pas de date de fin de l'expérience, écris simplement depuis quand il est chez ce client, sans rien d'autre."
         },
         {
             "input_variables":["CV","client_name"],
             "output_key":"poste",
-            "content":"Donne-moi le poste que la personne du CV a occupé chez {client_name}, pour le CV suivant : {CV}."
+            "content":"Tu es un professionnel des ressources humaines. Tu connais très bien la structure et le contenu des CV. \n Donne-moi le poste occupé chez {client_name}, pour le CV suivant : {CV}. \n Retourne-moi uniquement le poste, sans marque d'introduction ou marque de fin. N'indique pas le nom du client."
         },
         {
             "input_variables":["CV","client_name"],
             "output_key":"contexte",
-            "content":"Donne moi le contexte de sa mission chez {client_name}, en te basant uniquement sur le CV suivant : {CV}."
+            "content":"Tu es un professionnel des ressources humaines. Tu connais très bien la structure et le contenu des CV. \n Donne-moi le contexte de la mission chez {client_name}, pour le CV suivant : {CV}.\n Base toi UNIQUEMENT sur le contenu du CV. N'indique JAMAIS le nom et prénom, ne mentionne JAMAIS le candidat.\n Ecris ta réponse en 1 phrase. Ecris la phrase de façon non verbale. \n Ne redonne pas le nom du client, ni le poste, ni la durée de la mission au début de ta réponse."
         },
         {
             "input_variables":["CV","client_name"],
             "output_key":"missions",
-            "content":"Liste moi les missions que la personne du CV a réalisées chez {client_name}, pour le CV suivant : {CV}. Ecris ta réponse sous forme de bullet point."
+            "content":"Tu es un professionnel des ressources humaines. Tu connais très bien la structure et le contenu des CV. \n Liste-moi les missions réalisées chez {client_name}, pour le CV suivant : {CV}. \n Base-toi UNIQUEMENT sur le CV. N’indique JAMAIS le nom et prénom, ne mentionne JAMAIS le candidat. \n Ecris UNIQUEMENT les tâches réalisées. PAS de contexte. \n Ecris ta réponse sous forme de bullet point."
         },
         {
             "input_variables":["CV","client_name"],
             "output_key":"environnement_technique",
-            "content":"Donne moi l'environnement technique pour la mission chez {client_name}, pour le CV suivant : {CV}. Ecris ta réponse en listant chaque technologie utilisée."
+            "content":"Tu es un professionnel des ressources humaines. Tu connais très bien la structure et le contenu des CV. \n Liste-moi les technologies utilisées chez le client {client_name}, pour le CV suivant : {CV}. \n Base-toi UNIQUEMENT sur la section relative à {client_name}. \n Ecris ta réponse sous forme de bullet point. \n S'il n'y a pas de technologie utilisée, réponds uniquement 'RIEN'."
         }
 
 
