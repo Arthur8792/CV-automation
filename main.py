@@ -2,7 +2,7 @@ from langchain_openai import ChatOpenAI
 from src.utils import pdf_to_txt, json_to_dico, dico_to_json, fill_docx_template
 from src.sequential_chains import create_sequential_chain
 
-OPENAI_MODEL = 'gpt-4'
+OPENAI_MODEL = 'gpt-3.5-turbo'
 OPENAI_API_KEY_FILE = 'api_key_4.txt'
 OPENAI_API_KEY = ''
 
@@ -46,7 +46,7 @@ def main():
     dico_result = {}
     for output in output_variables:
         if output != "noms_clients":
-            result[output].replace("&", "&amp;")
+            result[output] = result[output].replace("&", "&amp;")
             dico_result[output] = result[output]
 
     # Part experiences : 
@@ -67,7 +67,7 @@ def main():
         dico_client = {}
         dico_client["client_name"] = client_name
         for output in output_variables_experiences:
-            result_experience[output].replace("&", "&amp;")
+            result_experience[output] = result_experience[output].replace("&", "&amp;")
             dico_client[output] = result_experience[output]
         dico_result_experiences['experiences'].append(dico_client)
     print("Get information about each experience ! ")
