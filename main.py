@@ -2,7 +2,7 @@ from langchain_openai import ChatOpenAI
 from src.utils import pdf_to_txt, json_to_dico, dico_to_json, fill_docx_template
 from src.sequential_chains import create_sequential_chain
 
-OPENAI_MODEL = 'gpt-3.5-turbo'
+OPENAI_MODEL = 'gpt-4-1106-preview'
 OPENAI_API_KEY_FILE = 'api_key_4.txt'
 OPENAI_API_KEY = ''
 
