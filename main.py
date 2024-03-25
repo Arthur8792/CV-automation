@@ -15,7 +15,7 @@ def main():
         OPENAI_API_KEY = api_key_file.readline().strip('\n')
     
     # Files paths
-    pdf_file = 'data/cv/Exemple1.pdf'
+    pdf_file = 'data/cv/ex5.pdf'
     prompts_file = 'data/prompts/prompts.json'
     prompts_experience_file = 'data/prompts/prompts-experiences.json'
     result_file = 'data/results/results.json'

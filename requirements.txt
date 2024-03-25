@@ -4,3 +4,4 @@ langchain
 langchain-openai
 docxtpl
 jinja2
+streamlit

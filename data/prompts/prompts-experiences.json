@@ -3,7 +3,7 @@
         {
             "input_variables":["CV","client_name"],
             "output_key":"date",
-            "content":"Tu es un professionnel des ressources humaines. Tu connais très bien la structure et le contenu des CV. \n Donne-moi la durée de son expérience chez {client_name}, pour le CV suivant : {CV}. \n Retourne-moi uniquement la durée de l'expérience chez le client, sans rien d'autre. S'il n'y a pas de date de fin de l'expérience, écris simplement depuis quand il est chez ce client, sans rien d'autre."
+            "content":"Tu es un professionnel des ressources humaines. Tu connais très bien la structure et le contenu des CV. \n Donne-moi la durée de son expérience chez {client_name}, pour le CV suivant : {CV}. \n Retourne-moi uniquement la durée de l'expérience chez le client, sans rien d'autre. S'il n'y a pas de date de fin de l'expérience, écris simplement depuis quand il est chez ce client, sans rien d'autre. S'il n'y a pas de durée d'expérience, retourne 'non renseigné'."
         },
         {
             "input_variables":["CV","client_name"],

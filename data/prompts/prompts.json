@@ -13,7 +13,7 @@
         {
             "input_variables":["CV"],
             "output_key":"annees_experience",
-            "content":"Tu es un professionnel des ressources humaines. Tu connais très bien la structure et le contenu des CV. \n Donne-moi le nombre d'années d'expérience pour le CV suivant : {CV}. \n Ecris ta réponse sous la forme 'xx ans d'expérience', où xx est le nombre d'années d'expérience."
+            "content":"Tu es un professionnel des ressources humaines. Tu connais très bien la structure et le contenu des CV. \n Donne-moi le nombre d'années d'expérience pour le CV suivant : {CV}. \n Ecris ta réponse sous la forme 'xx ans d'expérience', où xx est le nombre d'années d'expérience, sans introduction ou marque de fin."
         },
         {
             "input_variables":["CV"],
@@ -33,12 +33,12 @@
         {
             "input_variables":["CV"],
             "output_key":"formation",
-            "content":"Tu es un professionnel des ressources humaines. Tu connais très bien la structure et le contenu des CV. \n Liste-moi les formations et certifications pour le CV suivant : {CV}, de la plus récente à la plus ancienne. \n Ecris ta réponse sous forme de bullet point, où chaque point est écrit de la façon suivante : 'année de la formation ou certification : nom de la formation ou certification | établissement de la formation ou certification | lieu de la formation ou certification'. \n Dans le cas d'une certification, n'indique pas de lieu."
+            "content":"Tu es un professionnel des ressources humaines. Tu connais très bien la structure et le contenu des CV. \n Liste-moi les formations et certifications pour le CV suivant : {CV}, de la plus récente à la plus ancienne. \n Ecris ta réponse sous forme de bullet point, où chaque point est écrit de la façon suivante : 'année de la formation ou certification : nom de la formation ou certification | établissement de la formation ou certification | lieu de la formation ou certification'. \n Dans le cas d'une certification, n'indique pas de lieu. S'il n'y a pas de date de formation, n'indique pas la date."
         },
         {
             "input_variables":["CV"],
             "output_key":"noms_clients",
-            "content":"Tu es un professionnel des ressources humaines. Tu connais très bien la structure et le contenu des CV. \n Donne-moi le nom de tous les clients pour lesquels il a travaillé, pour le CV suivant : {CV}, du plus récent au plus ancien. \n Ne me retourne PAS l'employeur. Retourne-moi le CLIENT. \n Ecris ta réponse sous la forme suivante : [client1, client2, client3, ...]"
+            "content":"Tu es un professionnel des ressources humaines. Tu connais très bien la structure et le contenu des CV. \n Donne-moi le nom de tous les clients de ses expériences professionnelles, pour le CV suivant : {CV}, du plus récent au plus ancien. \n Base-toi UNIQUEMENT sur ses expériences professionnelles. \n Ecris ta réponse sous la forme suivante : [client1, client2, client3, ...]"
         }
         
     ]
