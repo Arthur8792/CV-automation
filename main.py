@@ -6,16 +6,20 @@ OPENAI_MODEL = 'gpt-4-1106-preview'
 OPENAI_API_KEY_FILE = 'api_key_4.txt'
 OPENAI_API_KEY = ''
 
-def main():
+def main(pdf_file: str)->str:
     """
     Main entry of the pipeline.
+
+    Args:
+        pdf_file : the path to the PDF file.
+    Returns:
+        The path to the Silamir CV.
     """
     # Get OpenAI API key : 
     with open(OPENAI_API_KEY_FILE,'r') as api_key_file:
         OPENAI_API_KEY = api_key_file.readline().strip('\n')
     
     # Files paths
-    pdf_file = 'data/cv/ex5.pdf'
     prompts_file = 'data/prompts/prompts.json'
     prompts_experience_file = 'data/prompts/prompts-experiences.json'
     result_file = 'data/results/results.json'
@@ -81,6 +85,9 @@ def main():
     dico_fill["experiences"] = dico_fill_experience["experiences"]
     fill_docx_template(dico_fill, template_file, cv_word)
 
+    return cv_word
+
 if __name__ == '__main__':
-    main()
+    pdf_file = 'data/cv/Ex1.pdf'
+    cv_word = main(pdf_file)
 
