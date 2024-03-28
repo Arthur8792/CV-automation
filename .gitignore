@@ -2,3 +2,4 @@ api_key.txt
 api_key_4.txt
 __pycache__
 *.pdf
+*.log

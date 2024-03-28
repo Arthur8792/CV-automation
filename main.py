@@ -1,10 +1,17 @@
 from langchain_openai import ChatOpenAI
+import logging
+from datetime import datetime
 from src.utils import pdf_to_txt, json_to_dico, dico_to_json, fill_docx_template
 from src.sequential_chains import create_sequential_chain
 
 OPENAI_MODEL = 'gpt-4-1106-preview'
 OPENAI_API_KEY_FILE = 'api_key_4.txt'
 OPENAI_API_KEY = ''
+
+# Param log file
+log_filename = datetime.now().strftime('logs/log_%Y-%m-%d.log')
+logging.basicConfig(filename=log_filename, level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logger = logging.getLogger('LLM Logger')
 
 def main(pdf_file: str)->str:
     """
@@ -43,7 +50,9 @@ def main(pdf_file: str)->str:
 
     # Run the general pipeline
     print("Getting general information about CV...")
+    logger.info('Begun requests to LLM for general info to CV')
     result = sequential_chain.invoke({"CV":cv_content})
+    logger.info('Ended requests to LLM for general info to CV')
     print("Get general information !")
 
     # Store results in a dictionary : 
@@ -65,7 +74,9 @@ def main(pdf_file: str)->str:
         # counter_monitoring += 1
         # if counter_monitoring>3:
         #     break
+        logger.info('Begun requests to LLM for 1 professional experience')
         result_experience = sequential_chain_experiences.invoke({"CV":cv_content,"client_name":client_name})
+        logger.info('Ended requests to LLM for 1 professional experience')
         # Store result in dictionary
         # Store client name
         dico_client = {}

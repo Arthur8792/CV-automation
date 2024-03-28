@@ -5,6 +5,7 @@ import streamlit as st
 import time
 from main import main
 
+# Add session variables
 if 'ready_download' not in st.session_state:
     st.session_state['ready_download'] = None 
 
@@ -40,5 +41,4 @@ if uploaded_file is not None:
                 file_name = "cv_silamir.docx",
                 mime = "application/pdf",                
             )
-
 
