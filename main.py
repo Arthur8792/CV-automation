@@ -1,5 +1,6 @@
 from langchain_openai import ChatOpenAI
 import logging
+import argparse
 from datetime import datetime
 from src.utils import pdf_to_txt, json_to_dico, dico_to_json, fill_docx_template
 from src.sequential_chains import create_sequential_chain
@@ -99,6 +100,11 @@ def main(pdf_file: str)->str:
     return cv_word
 
 if __name__ == '__main__':
-    pdf_file = 'data/cv/Ex1.pdf'
+    # Create argument parser
+    parser = argparse.ArgumentParser()
+    # Add folder argument
+    parser.add_argument('--path', type=str, help='Path of the CV to convert')
+    # Get argument
+    pdf_file = parser.parse_args().path
     cv_word = main(pdf_file)
 

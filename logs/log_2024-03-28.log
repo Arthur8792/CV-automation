@@ -1,0 +1,2 @@
+2024-03-28 15:05:03,521 - LLM Logger - INFO - Begun requests to LLM for general info to CV
+2024-03-28 15:05:05,094 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
